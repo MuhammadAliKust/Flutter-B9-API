@@ -2,7 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_b9_api/providers/token.dart';
+import 'package:flutter_b9_api/providers/user.dart';
 import 'package:flutter_b9_api/services/auth.dart';
+import 'package:flutter_b9_api/views/profile.dart';
 import 'package:flutter_b9_api/views/register.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +23,7 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     var tokenProvider = Provider.of<TokenProvider>(context);
+    var userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text("Login"),
@@ -70,15 +73,21 @@ class _LoginViewState extends State<LoginView> {
                             .getProfile(val.token.toString())
                             .then((val) {
                           isLoading = false;
-                          setState(() {
-
-                          });
+                          setState(() {});
+                          userProvider.setUser(val);
                           showDialog(
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
                                   title: Text("Message"),
                                   content: Text(val.user!.name.toString()),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileView()));
+                                        },
+                                        child: Text("Go to Profile"))
+                                  ],
                                 );
                               });
                         });

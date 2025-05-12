@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_b9_api/providers/token.dart';
+import 'package:flutter_b9_api/providers/user.dart';
 import 'package:flutter_b9_api/views/login.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MultiProvider(
-      providers: [ChangeNotifierProvider(create: (context) => TokenProvider())],
-      child: const MyApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (context) => TokenProvider()),
+    ChangeNotifierProvider(create: (context) => UserProvider()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
