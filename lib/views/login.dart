@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_b9_api/providers/token.dart';
 import 'package:flutter_b9_api/providers/user.dart';
 import 'package:flutter_b9_api/services/auth.dart';
+import 'package:flutter_b9_api/views/get_all_task.dart';
 import 'package:flutter_b9_api/views/profile.dart';
 import 'package:flutter_b9_api/views/register.dart';
 import 'package:provider/provider.dart';
@@ -84,7 +85,11 @@ class _LoginViewState extends State<LoginView> {
                                   actions: [
                                     TextButton(
                                         onPressed: () {
-                                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ProfileView()));
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      GetAllTaskView()));
                                         },
                                         child: Text("Go to Profile"))
                                   ],
